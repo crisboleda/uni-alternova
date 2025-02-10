@@ -1,4 +1,3 @@
-
 ID_LEGAL_TYPES = (
     ("NIT", "NIT"),
     ("CC", "Cédula de ciudadania"),

@@ -4,13 +4,7 @@ from django.utils import timezone
 
 class UserManager(BaseUserManager):
     def _create_user(
-        self,
-        email,
-        password,
-        is_staff,
-        is_superuser,
-        is_active,
-        **extra_fields
+        self, email, password, is_staff, is_superuser, is_active, **extra_fields
     ):
         """
         Creates and saves a User with the given username, email and password.
@@ -28,11 +22,9 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_user(
-        self, email=None, password=None, is_active=True, **extra_fields
-    ):
-        is_staff = extra_fields.pop('is_staff', False)
-        is_superuser = extra_fields.pop('is_superuser', False)
+    def create_user(self, email=None, password=None, is_active=True, **extra_fields):
+        is_staff = extra_fields.pop("is_staff", False)
+        is_superuser = extra_fields.pop("is_superuser", False)
         return self._create_user(
             email, password, is_staff, is_superuser, is_active, **extra_fields
         )

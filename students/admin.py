@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from students import models
+
+
+@admin.register(models.Student)
+class StudentAdmin(admin.ModelAdmin):
+    readonly_fields = ("uuid",)

@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from subjects import models
 
@@ -10,4 +9,9 @@ class SubjectStatusAdmin(admin.ModelAdmin):
 
 @admin.register(models.Subject)
 class SubjectAdmin(admin.ModelAdmin):
+    readonly_fields = ("uuid",)
+
+
+@admin.register(models.SubjectRegistration)
+class SubjectRegistrationAdmin(admin.ModelAdmin):
     readonly_fields = ("uuid",)
