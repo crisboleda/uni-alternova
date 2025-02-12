@@ -3,12 +3,14 @@ from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.mixins import CreateModelMixin, ListModelMixin
 from rest_framework.response import Response
+from rest_access_policy import AccessViewSetMixin
 from django.db.models import Avg
 
 from subjects.validations import is_required_subjects_approved, is_subject_registered
 from subjects.models import SubjectStatus, SubjectRegistration, Subject
 from subjects import serializers
 from students.serializers import StudentSerializer
+from subjects.policies import StudentAccessPolicy
 
 
 class SubjectViewSet(viewsets.ModelViewSet):
@@ -18,10 +20,11 @@ class SubjectViewSet(viewsets.ModelViewSet):
 
 # Student subject registrations
 class SubjectRegistrationViewSet(
-    viewsets.GenericViewSet, CreateModelMixin, ListModelMixin
+    AccessViewSetMixin, viewsets.GenericViewSet, CreateModelMixin, ListModelMixin
 ):
     queryset = SubjectRegistration.objects.all()
     serializer_class = serializers.SubjectRegistrationDetailSerializer
+    access_policy = StudentAccessPolicy
 
     def perform_create(self, serializer):
         subject_uuid = self.request.data.get("subject")

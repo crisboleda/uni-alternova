@@ -42,14 +42,13 @@ class SubjectRegistrationSerializer(ModelSerializer):
 
 class SubjectRegistrationDetailSerializer(ModelSerializer):
 
-    student = StudentSerializer(read_only=True)
     professor = ProfessorSerializer(read_only=True)
     subject = SubjectSerializer(read_only=True)
     status = SubjectRegistrationStatusSerializer(read_only=True)
 
     class Meta:
         model = models.SubjectRegistration
-        exclude = ["uuid"]
+        exclude = ["uuid", "student"]
 
 
 class FinishSubjectSerializer(serializers.Serializer):

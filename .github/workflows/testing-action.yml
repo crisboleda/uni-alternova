@@ -1,0 +1,14 @@
+name: Tests
+on: [push]
+jobs:
+  lint:
+    name: Code Style Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+      - name: Black Formatter Check
+        uses: psf/black@stable
+        with:
+          options: "--check --diff --verbose --color"
+          src: ./

@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-KEY_ENCRYPTION = b"m-solADsEXM6KOqjY4_hL3-YCWMBmqUfBmxsIV98Q70="
+SECRET_KEY_CIPHER = "bb2RyqpwjXn-I_uu7BE3zAirBFA4cQ2wzPF9EsbHxZI="
 
 # Application definition
 
