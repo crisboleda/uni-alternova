@@ -31,6 +31,10 @@ Este sistema nos permite gestionar las inscripciones de materias por parte de lo
 
 ![Diagrama Relacional](docs/Diagrama.png)
 
+### Testing
+
+- **Execute all tests with:** ```python manage.py test```
+
 ### Buenas prácticas
 
 - Se usaron **Indexes** en la base de datos para optimizar las consultas.

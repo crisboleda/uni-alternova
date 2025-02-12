@@ -4,7 +4,8 @@ from django.urls import path
 from core.swagger import schema_view
 from config.api import api
 
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
+from .views import CustomTokenObtainPairView
 
 
 urlpatterns = [

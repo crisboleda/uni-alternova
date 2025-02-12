@@ -1,8 +1,7 @@
 import uuid
 from common import constants
-from cryptography.fernet import Fernet
-from core.settings import KEY_ENCRYPTION
 from users.managers import UserManager
+from core.utils import decrypt_email, encrypt_email
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth import password_validation
@@ -58,12 +57,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
 
     def save(self, *args, **kwargs):
-        cipher_suite = Fernet(KEY_ENCRYPTION)
-
-        super().save(*args, **kwargs)
         if self._password is not None:
             password_validation.password_changed(self._password, self)
             self._password = None
 
         if self.email is not None:
             self.email = self.email.lower()
+
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
